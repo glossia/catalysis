@@ -1,2 +1,3 @@
-# catalysis
-🦀 A CLI to deploy static sites to various CDN providers
+# Catalysis 🧪
+
+`catalysis` is a multi-platform CLI and Rust library to standardize publishing static websites to various platforms.
