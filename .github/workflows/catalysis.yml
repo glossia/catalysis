@@ -1,0 +1,28 @@
+name: catalysis
+
+on:
+  push:
+    branches:
+      - main
+  pull_request: {}
+
+concurrency:
+  group: catalysis-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: build
+    strategy:
+      matrix:
+        os:
+          - ubuntu-22.04
+          - macOS-14
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
+        with: 
+          toolchain: stable
+          components: rustfmt
+      - run: cargo build --release --all-features
